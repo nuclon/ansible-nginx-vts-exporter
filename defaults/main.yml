@@ -1,0 +1,9 @@
+---
+# defaults file for nginx-vts-exporter
+
+nginx_vts_exporter_version: 0.10.3
+nginx_vts_exporter_status_url: http://localhost/status/format/json
+nginx_vts_exporter_metrics_namespace: nginx
+nginx_vts_exporter_metrics_addr: ":9913"
+nginx_vts_exporter_system_user: root
+nginx_vts_exporter_system_group: root

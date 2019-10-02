@@ -1,0 +1,28 @@
+---
+# tasks file for nginx-vts-exporter
+
+- import_tasks: preflight.yml
+  tags:
+    - node_exporter_install
+    - node_exporter_configure
+    - node_exporter_run
+
+- import_tasks: install.yml
+  when: (not __nginx_vts_exporter_is_installed.stat.exists) or (__nginx_vts_exporter_current_version_output.stdout_lines[0].split(" ")[2] != nginx_vts_exporter_version)
+  tags:
+    - node_exporter_install
+
+- import_tasks: configure.yml
+  become: true
+  tags:
+    - node_exporter_configure
+
+- name: Ensure Nginx VTS Exporter is enabled on boot
+  become: true
+  systemd:
+    daemon_reload: true
+    name: nginx_vts_exporter
+    enabled: true
+    state: started
+  tags:
+    - nginx_vts_exporter_run

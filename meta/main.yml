@@ -1,0 +1,26 @@
+---
+galaxy_info:
+  author: Anatolii Lapytskyi
+  description: Nginx VTS Exporter
+  license: MIT
+  min_ansible_version: 2.6
+  platforms:
+    - name: EL
+      versions:
+        - 7
+    - name: Ubuntu
+      versions:
+        - bionic
+        - xenial
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+  galaxy_tags:
+    - monitoring
+    - prometheus
+    - exporter
+    - metrics
+    - system
+
+dependencies: []
