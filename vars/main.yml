@@ -7,3 +7,6 @@ go_arch_map:
   armv6l: 'armv6'
 
 go_arch: "{{ go_arch_map[ansible_architecture] | default(ansible_architecture) }}"
+
+nginx_vts_exporter_download_url: "https://github.com/hnlq715/nginx-vts-exporter/releases/download"
+nginx_vts_exporter_download_basename: "nginx-vts-exporter-{{ nginx_vts_exporter_version }}.linux-{{ go_arch }}"

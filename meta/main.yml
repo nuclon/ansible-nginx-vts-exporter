@@ -1,7 +1,8 @@
 ---
 galaxy_info:
-  author: Anatolii Lapytskyi
+  role_name: nginx-vts-exporter
   description: Nginx VTS Exporter
+  author: Anatolii Lapytskyi
   license: MIT
   min_ansible_version: 2.6
   platforms:

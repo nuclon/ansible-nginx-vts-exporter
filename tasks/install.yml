@@ -20,8 +20,8 @@
 - name: Download exporter binary to local folder
   become: false
   get_url:
-    url: "https://github.com/hnlq715/nginx-vts-exporter/releases/download/v{{ nginx_vts_exporter_version }}/nginx-vts-exporter-{{ nginx_vts_exporter_version }}.linux-{{ go_arch }}.tar.gz"
-    dest: "/tmp/nginx-vts-exporter-{{ nginx_vts_exporter_version }}.linux-{{ go_arch }}.tar.gz"
+    url: "{{ nginx_vts_exporter_download_url }}/v{{ nginx_vts_exporter_version }}/{{ nginx_vts_exporter_download_basename }}.tar.gz"
+    dest: "/tmp/{{ nginx_vts_exporter_download_basename }}.tar.gz"
   register: _download_binary
   until: _download_binary is succeeded
   retries: 5
@@ -32,10 +32,10 @@
 - name: Unpack exporter binary
   become: false
   unarchive:
-    src: "/tmp/nginx-vts-exporter-{{ nginx_vts_exporter_version }}.linux-{{ go_arch }}.tar.gz"
+    src: "/tmp/{{ nginx_vts_exporter_download_basename }}.tar.gz"
     remote_src: yes
     dest: "/tmp"
-    creates: "/tmp/nginx-vts-exporter-{{ nginx_vts_exporter_version }}.linux-{{ go_arch }}/nginx-vts-exporter"
+    creates: "/tmp/{{ nginx_vts_exporter_download_basename }}/nginx-vts-exporter"
   # delegate_to: localhost
   check_mode: false
 
@@ -47,7 +47,7 @@
 
 - name: Propagate exporter binaries
   copy:
-    src: "/tmp/nginx-vts-exporter-{{ nginx_vts_exporter_version }}.linux-{{ go_arch }}/nginx-vts-exporter"
+    src: "/tmp/{{ nginx_vts_exporter_download_basename }}/nginx-vts-exporter"
     remote_src: yes
     dest: "/usr/local/bin/nginx-vts-exporter"
     mode: 0755

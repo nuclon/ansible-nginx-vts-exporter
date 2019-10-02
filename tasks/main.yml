@@ -8,7 +8,8 @@
     - node_exporter_run
 
 - import_tasks: install.yml
-  when: (not __nginx_vts_exporter_is_installed.stat.exists) or (__nginx_vts_exporter_current_version_output.stdout_lines[0].split(" ")[2] != nginx_vts_exporter_version)
+  when: (not __nginx_vts_exporter_is_installed.stat.exists)
+        or (__nginx_vts_exporter_current_version_output.stdout_lines[0].split(" ")[2] != nginx_vts_exporter_version)
   tags:
     - node_exporter_install
 
